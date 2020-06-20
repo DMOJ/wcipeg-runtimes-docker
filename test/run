@@ -1,7 +1,12 @@
 #!/bin/bash
 mkdir /judge
 cd /judge
-curl -L https://github.com/DMOJ/judge/archive/master.tar.gz | tar -xz --strip-components=1
+curl -L https://github.com/Xyene/judge/archive/wcipeg-judge.tar.gz | tar -xz --strip-components=1
 pip3 install -e .
+
+mount --bind "/tmp" "/opt/jail/tmp"
+mount --bind "/dev" "/opt/jail/dev"
+mount --bind "/proc" "/opt/jail/proc"
+
 . ~judge/.profile
 runuser -u judge -w PATH -- dmoj-autoconf -V
